@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>راكان للإلكترونيات | Rakan Electronics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+    <!-- شريط الإعلانات اللانهائي المتحرك -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span>🔥 عروض الحصرية من متجر راكان: شحن مجاني للطلبات فوق 150 د.ل! ⚡</span>
+            <span>⚡ متوفر الآن الدفع عند الاستلام وكافة البطاقات المصرفية! 🔥</span>
+        </div>
+    </div>
+
+    <!-- الهيدر العصري المطور -->
+    <header>
+        <div class="container header-flex">
+            <div class="logo-container">
+                <h1 class="logo-text">RAKAN<span>.ELEC</span></h1>
+            </div>
+            
+            <div class="header-actions">
+                <button class="cyber-circle-btn" onclick="toggleStoreTheme()" title="تغيير النمط">🌓</button>
+                <button class="cyber-btn" onclick="toggleCartDrawer(true)">
+                    🛒 السلة <span id="cart-count-badge">0</span>
+                </button>
+                <div id="admin-auth-zone">
+                    <button class="cyber-btn admin-btn" onclick="openModal('loginModal')">🔐 لوحة المشرف</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 📊 لوحة تحكم المشرف (راكان) -->
+        <section id="admin-dashboard-zone" style="display: none; background: #1e293b; border: 2px solid #f97316; padding: 25px; border-radius: 20px; margin-bottom: 30px;">
+            <h2 style="color: #f97316; margin-top:0;">📊 لوحة تحكم المشرف (راكان)</h2>
+            
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+                <div class="stat-card" style="background:#0f172a; padding:15px; border-radius:10px; border:1px solid #334155; flex:1; min-width:150px;">المبيعات: <span id="dash-sales">620.00 د.ل</span></div>
+                <div class="stat-card" style="background:#0f172a; padding:15px; border-radius:10px; border:1px solid #334155; flex:1; min-width:150px;">الأرباح التقديرية: <span id="dash-profits">155.00 د.ل</span></div>
+                <div class="stat-card" style="background:#0f172a; padding:15px; border-radius:10px; border:1px solid #334155; flex:1; min-width:150px;">الزوار: <span id="dash-visitors">142</span></div>
+            </div>
+
+            <!-- ➕ نموذج إضافة منتج جديد من المعرض بالتصنيفات والأجهزة المستهدفة المحدثة -->
+            <div style="background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 25px;">
+                <h3 style="color: #3b82f6; margin-top: 0; margin-bottom:15px;">➕ إضافة منتج جديد للمتجر</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
+                    <input type="text" id="new-p-name" placeholder="اسم المنتج بالكامل..." style="padding:10px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+                    <input type="number" id="new-p-price" placeholder="السعر بالدينار (د.ل)..." style="padding:10px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+                    <input type="number" id="new-p-stock" placeholder="الكمية المتوفرة بالمخزن..." value="5" style="padding:10px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+                    
+                    <select id="new-p-category" style="padding:10px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+                        <option value="devices">أجهزة إلكترونية 💻</option>
+                        <option value="office">ملحقات مكاتب 🗄️</option>
+                        <option value="stickers">ستيكرات 🎨</option>
+                        <option value="ps4">دسكات وألعاب PS4 💿</option>
+                        <option value="ps5">دسكات وألعاب PS5 💿</option>
+                        <option value="covers">كفرات وحمايات 🛡️</option>
+                        <option value="powers">شواحن وبنوك طاقة 🔌</option>
+                        <option value="audio">سماعات ومكبرات صوت 🎧</option>
+                        <option value="cables">كابلات ووصلات شحن ⚡</option>
+                        <option value="adapters">رؤوس شواحن ومحولات 🔋</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+                    <input type="text" id="new-p-desc" placeholder="وصف قصير للمنتج ومميزاته..." style="padding:10px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+                    <input type="text" id="new-p-target" placeholder="الأجهزة المتوافقة (مثال: iphone, ps5, macbook) تفصل بينها بفاصلة" style="padding:10px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+                </div>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; align-items: center;">
+                    <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 4px;">
+                        <label style="font-size: 0.8rem; color: #94a3b8;">صورة المنتج من الاستوديو:</label>
+                        <input type="file" id="new-p-image-file" accept="image/*" style="padding:6px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155; width:100%; box-sizing:border-box;">
+                    </div>
+                </div>
+                <button class="cyber-btn" style="background: #22c55e; width: 100%;" onclick="addNewProductFromDashboard()">اعتماد ونشر المنتج فوراً في المتجر 🚀</button>
+            </div>
+
+            <!-- قائمة جرد وإدارة المنتجات المخزنة -->
+            <div id="admin-inventory-status"></div>
+            
+            <button class="cyber-btn" style="background:#ef4444; margin-top: 15px;" onclick="handleAdminLogout()">خروج من اللوحة ↩️</button>
+        </section>
+
+        <section id="shop-view-zone">
+            <!-- بنر العروض المطور -->
+            <div class="carousel-container" style="background: linear-gradient(to left, rgba(15,23,42,0.95), rgba(15,23,42,0.6)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&q=80') center/cover; padding: 60px 30px; border-radius: 20px; margin-bottom: 30px; color: white;">
+                <span style="background:#f97316; padding:4px 10px; border-radius:5px; font-size:0.8rem; font-weight:bold;">تحديث جديد ⚡</span>
+                <h2 style="font-size:2rem; margin:15px 0 10px;">كل ما يخص أجهزتك ومكتبك في مكان واحد</h2>
+                <p style="color:#94a3b8; max-width:600px;">تصفح التصنيفات الجديدة من الدسكات، كفرات الحماية، الستيكرات، وتجهيزات المكاتب المتكاملة.</p>
+            </div>
+
+            <!-- 🔍 نظام بحث متطور عن الأجهزة وكمالياتها -->
+            <div class="search-zone" style="margin-bottom: 30px; background: #1e293b; padding: 15px; border-radius: 12px; border: 1px solid #334155;">
+                <label style="display:block; margin-bottom:8px; font-weight:bold; color: #3b82f6;">🔍 ابحث باسم جهازك لعرض كل كمالياته وملحقاته:</label>
+                <div style="display:flex; gap:10px;">
+                    <input type="text" id="main-search-input" oninput="searchDeviceAccessories()" placeholder="اكتب اسم الجهاز هنا (مثال: iPhone, PS5, MacBook, PS4)..." style="flex:1; padding:12px; border-radius:8px; background:#0f172a; color:white; border:1px solid #334155; font-size:1rem;">
+                    <button class="cyber-btn" onclick="clearSearch()">تصفير ✕</button>
+                </div>
+            </div>
+
+            <!-- شريط الفلترة السريعة بالتصنيفات الجديدة -->
+            <div class="filter-bar" style="display:flex; gap:8px; margin: 25px 0; flex-wrap:wrap;">
+                <button class="filter-btn active" onclick="filterCategory('all', this)">الكل 📱</button>
+                <button class="filter-btn" onclick="filterCategory('devices', this)">أجهزة إلكترونية 💻</button>
+                <button class="filter-btn" onclick="filterCategory('office', this)">ملحقات مكاتب 🗄️</button>
+                <button class="filter-btn" onclick="filterCategory('stickers', this)">ستيكرات 🎨</button>
+                <button class="filter-btn" onclick="filterCategory('ps4', this)">العاب PS4 💿</button>
+                <button class="filter-btn" onclick="filterCategory('ps5', this)">العاب PS5 💿</button>
+                <button class="filter-btn" onclick="filterCategory('covers', this)">كفرات 🛡️</button>
+                <button class="filter-btn" onclick="filterCategory('powers', this)">شواحن 🔌</button>
+                <button class="filter-btn" onclick="filterCategory('audio', this)">سماعات 🎧</button>
+            </div>
+
+            <div id="compare-table-output" style="margin-bottom: 20px;"></div>
+
+            <!-- شبكة عرض المنتجات الأساسية -->
+            <h2 id="section-title" style="margin-bottom:20px; border-right:4px solid #f97316; padding-right:10px;">📦 المنتجات المتوفرة فوري</h2>
+            <div id="products-container" class="products-grid"></div>
+        </section>
+    </main>
+
+    <!-- 🔐 مودال تسجيل دخول المشرف -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 style="margin-top:0;">🔐 تسجيل دخول المشرف</h3>
+            <input type="text" id="admin-user" placeholder="اسم المستخدم" style="width:100%; box-sizing:border-box; padding:10px; margin-bottom:10px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+            <input type="password" id="admin-pass" placeholder="كلمة المرور" style="width:100%; box-sizing:border-box; padding:10px; margin-bottom:15px; border-radius:8px; background:#1e293b; color:white; border:1px solid #334155;">
+            <div style="display:flex; gap:10px;">
+                <button class="cyber-btn" onclick="checkAdminLogin()">دخول 🔓</button>
+                <button class="cyber-btn" style="background:#475569;" onclick="closeModal('loginModal')">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- السلة الجانبية -->
+    <div id="cartDrawer" class="cart-drawer">
+        <h3 style="margin-top:0;">سلة المشتريات 🛒</h3>
+        <div id="cart-items-list"></div>
+        <div style="margin-top:20px; border-top:1px solid #334155; padding-top:15px;">
+            <p>إجمالي المنتجات: <span id="subtotal-price" style="color:#f97316; font-weight:bold;">0.00 د.ل</span></p>
+            <p>النقاط المكتسبة: <span id="earned-points-disp" style="color:#10b981; font-weight:bold;">0</span> نقطة 🪙</p>
+            
+            <h4 style="margin: 15px 0 5px;">بيانات التوصيل:</h4>
+            <input type="text" id="cust-name" placeholder="اسمك الكريم" style="width:100%; box-sizing:border-box; margin-bottom:8px; padding:10px; border-radius:8px; background:#0f172a; color:white; border:1px solid #334155;">
+            <input type="text" id="cust-phone" placeholder="رقم الهاتف" style="width:100%; box-sizing:border-box; margin-bottom:8px; padding:10px; border-radius:8px; background:#0f172a; color:white; border:1px solid #334155;">
+            <input type="text" id="cust-address" placeholder="عنوان التوصيل بالتفصيل" style="width:100%; box-sizing:border-box; margin-bottom:15px; padding:10px; border-radius:8px; background:#0f172a; color:white; border:1px solid #334155;">
+            
+            <select id="city-select" onchange="updateCartUI()" style="width:100%; box-sizing:border-box; margin-bottom:15px; padding:10px; border-radius:8px; background:#0f172a; color:white; border:1px solid #334155;">
+                <option value="10">طرابلس (+10 د.ل توصيل)</option>
+                <option value="15">مصراتة (+15 د.ل توصيل)</option>
+                <option value="20">بنغازي (+20 د.ل توصيل)</option>
+            </select>
+            
+            <button class="checkout-btn" style="width:100%; background:#25d366; color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; font-size:1rem; margin-bottom:8px;" onclick="sendOrderToWhatsApp()">تأكيد الطلب عبر الواتساب 💬</button>
+            <button class="cyber-btn" style="width:100%; background:#475569;" onclick="toggleCartDrawer(false)">إغلاق السلة</button>
+        </div>
+    </div>
+    
+    <div id="drawerOverlay" class="drawer-overlay" onclick="toggleCartDrawer(false)"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
