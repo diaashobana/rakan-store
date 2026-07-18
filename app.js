@@ -1,7 +1,7 @@
 // متجر راكان للإلكترونيات - تحديث سحابي مباشر عبر GitHub API
 const GITHUB_USERNAME = "diaashobana"; 
 const REPO_NAME = "rakan-store";
-const GITHUB_TOKEN = "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"; 
+const GITHUB_TOKEN = "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"; 
 
 let allProducts = [];
 let cart = [];
